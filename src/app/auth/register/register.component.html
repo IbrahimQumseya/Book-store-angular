@@ -1,0 +1,76 @@
+<div class="flex mt-20 justify-center">
+  <form
+    class="p-4 rounded-lg border w-1/3"
+    (ngSubmit)="onSubmit()"
+    #form="ngForm"
+  >
+    <h1 class="text-center text-center">Register</h1>
+    <div class="my-5 w-full">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        class="p-2 rounded w-full border"
+        placeholder="Email Address"
+        [(ngModel)]="formReg.email"
+        name="email"
+        #email="ngModel"
+        required
+      />
+    </div>
+    <div
+      *ngIf="!email.valid && email.touched"
+      class="p-2 bg-red-300 text-red-800 rounded"
+    >
+      Email filed Must be Valid
+    </div>
+    <div class="my-5 w-full">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        class="p-2 rounded w-full border"
+        placeholder="Password"
+        [(ngModel)]="formReg.password"
+        name="password"
+        #password="ngModel"
+        required
+      />
+    </div>
+    <div
+      *ngIf="!password.valid && password.touched"
+      class="p-2 bg-red-300 text-red-800 rounded"
+    >
+      Password filed Must be Valid
+    </div>
+    <div class="my-5 w-full">
+      <label for="confirm-password">Confirm Password</label>
+      <input
+        type="password"
+        id="confirm-password"
+        class="p-2 rounded w-full border"
+        placeholder="Confirm Password"
+        [(ngModel)]="formReg.confirmPassword"
+        name="confirmPassword"
+        #confirmPassword="ngModel"
+        required
+      />
+    </div>
+    <div
+      *ngIf="!confirmPassword.valid && confirmPassword.touched"
+      class="p-2 bg-red-300 text-red-800 rounded"
+    >
+      Confirm Password filed Must be Valid
+    </div>
+    <div class="my-5 w-full">
+      <button
+        class="p-2 w-full bg-purple-700 text-white hover:bg-purple-900 rounded"
+        type="submit"
+        [disabled]="form.form.invalid"
+      >
+        <ng-container *ngIf="isLoading()"> Loading ... </ng-container>
+        <ng-container *ngIf="!isLoading()"> Submit </ng-container>
+      </button>
+    </div>
+  </form>
+</div>
